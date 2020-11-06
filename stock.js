@@ -1,6 +1,6 @@
 const stock = {
     randomAroundZero: function () {
-        return Math.random() > 0.5 ? 1 : -1;
+        return Math.random() > 0.5 ? 0.6 : -0.6;
     },
 
     getStockPrice: function (input) {
@@ -13,3 +13,4 @@ const stock = {
 };
 
 module.exports = stock;
+

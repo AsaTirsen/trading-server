@@ -7,7 +7,7 @@ const io = require('socket.io')(server, {
   transports: ['websocket', 'polling']
 });
 
-const port = 1342;
+const port = 1343;
 console.log(port);
 //
 // let pinkLady = {
@@ -19,8 +19,8 @@ console.log(port);
 
 let grannySmith = {
   name: "Granny Smith",
-  rate: 1.002,
-  variance: 0.6,
+  rate: 1.001,
+  variance: 0.3,
   startingPoint: 20,
 };
 
@@ -46,7 +46,7 @@ setInterval(function () {
     value: grannySmith["startingPoint"]
   });
   console.log(grannySmith)
-}, 50000);
+}, 10000);
 
 
 
