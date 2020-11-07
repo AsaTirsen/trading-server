@@ -8,6 +8,7 @@ const io = require('socket.io')(server, {
 });
 
 const port = 1343;
+io.origins(['https://www.traders-galore.asatirsen.me:443'])
 console.log(port);
 //
 // let pinkLady = {
