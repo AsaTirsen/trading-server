@@ -3,12 +3,24 @@ const app = express();
 const server = require('http').createServer(app);
 const stock = require('./stock');
 
-const io = require('socket.io')(server, {
-  transports: ['websocket', 'polling']
-});
+// const io = require('socket.io')(server, {
+//   transports: ['websocket', 'polling']
+// });
 
+
+const io = require("socket.io")(server, {
+  handlePreflightRequest: (req, res) => {
+    const headers = {
+      "Access-Control-Allow-Headers": "Content-Type, Authorization",
+      "Access-Control-Allow-Origin": req.headers.origin,
+      "Access-Control-Allow-Credentials": true,
+    };
+    res.writeHead(200, headers);
+    res.end();
+  },
+})
 const port = 1343;
-io.origins(['https://www.traders-galore.asatirsen.me:443']);
+//io.origins(['https://www.traders-galore.asatirsen.me:443']);
 
 
 // Answer on all http requests
