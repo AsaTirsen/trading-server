@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const server = require('http').createServer();
+const server = require('http').createServer(app);
 const stock = require('./stock');
 
 const io = require('socket.io')(server, {
@@ -8,7 +8,14 @@ const io = require('socket.io')(server, {
 });
 
 const port = 1343;
-io.origins(['https://www.traders-galore.asatirsen.me:443'])
+
+
+// Answer on all http requests
+app.use(function (req, res) {
+  res.send({msg: "hello"});
+});
+
+//io.origins(['https://www.traders-galore.asatirsen.me:443'])
 //console.log(port);
 //
 // let pinkLady = {
