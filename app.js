@@ -7,7 +7,7 @@ const io = require('socket.io')(server, {
   transports: ['websocket', 'polling']
 });
 
-//const port = 1343;
+const port = 1343;
 io.origins(['https://www.traders-galore.asatirsen.me:443'])
 //console.log(port);
 //
