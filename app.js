@@ -8,6 +8,7 @@ const io = require('socket.io')(server, {
 });
 
 const port = 1342;
+io.origins(['https://www.traders-galore.asatirsen.me:443'])
 
 
 // Answer on all http requests
@@ -15,7 +16,7 @@ app.use(function (req, res) {
   res.send({msg: "hello"});
 });
 
-//io.origins(['https://www.traders-galore.asatirsen.me:443'])
+
 //console.log(port);
 //
 // let pinkLady = {
