@@ -7,7 +7,7 @@ const io = require('socket.io')(server, {
   transports: ['websocket', 'polling']
 });
 
-const port = 1343;
+const port = 1342;
 
 
 // Answer on all http requests
