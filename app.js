@@ -11,20 +11,7 @@ const port = 1343;
 io.origins(['https://traders-galore.asatirsen.me:443 https://traders-galore.asatirsen.me https://traders-galore.asatirsen.me:* 46.101.140.183:*']);
 
 
-// Answer on all http requests
-app.use(function (req, res) {
-  res.send({msg: "hello"});
-});
 
-
-//console.log(port);
-//
-// let pinkLady = {
-//   name: "Pink Lady",
-//   rate: 1.004,
-//   variance: 0.4,
-//   startingPoint: 18,
-// };
 
 let grannySmith = {
   name: "Granny Smith",
@@ -44,10 +31,6 @@ io.on('connection', function(socket) {
 });
 
 setInterval(function () {
-  // apples.map((apple) => {
-  //   apple["startingPoint"] = stock.getStockPrice(apple);
-  //   console.log(apple)
-  //   return apple;
   grannySmith["startingPoint"] = stock.getStockPrice(grannySmith);
   console.log( grannySmith["startingPoint"])
   io.emit("stocks", {
