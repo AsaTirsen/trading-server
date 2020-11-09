@@ -8,8 +8,8 @@ const io = require('socket.io')(server, {
 });
 
 const port = 1343;
-io.origins(['https://traders-galore.asatirsen.me:443 https://traders-galore.asatirsen.me https://traders-galore.asatirsen.me:* 46.101.140.183:*']);
-
+//io.origins(['https://traders-galore.asatirsen.me:443 https://traders-galore.asatirsen.me https://traders-galore.asatirsen.me:* 46.101.140.183:*']);
+io.origins(['localhost:3000']);
 
 
 
@@ -20,7 +20,6 @@ let grannySmith = {
   startingPoint: 20,
 };
 
-// let apples = [grannySmith, pinkLady]
 
 
 io.on('connection', function(socket) {
@@ -38,7 +37,7 @@ setInterval(function () {
     value: grannySmith["startingPoint"]
   });
   console.log(grannySmith)
-}, 10000);
+}, 30000);
 
 
 
@@ -47,4 +46,4 @@ server.listen(port, () => {
   console.log(`Server is listening on ${port}`);
 });
 
-module.exports = app;
+module.exports = server;
