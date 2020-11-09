@@ -8,7 +8,7 @@ const io = require('socket.io')(server, {
 });
 
 const port = 1343;
-io.origins(['https://traders-galore.asatirsen.me:443']);
+io.origins(['https://traders-galore.asatirsen.me:443 https://traders-galore.asatirsen.me https://traders-galore.asatirsen.me:* 46.101.140.183:*']);
 
 
 // Answer on all http requests
