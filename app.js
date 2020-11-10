@@ -1,49 +1,56 @@
 const express = require('express');
+const http = require("http");
 const app = express();
-const server = require('http').createServer(app);
+const webSocketServer = require('websocket').server;
+const server = http.createServer(app);
+const wsServer = new webSocketServer({
+    httpServer: server
+});
+const port = 1343;
 const stock = require('./stock');
 
-const io = require('socket.io')(server, {
-  transports: ['websocket', 'polling']
+
+// Answer on all http requests
+app.use(function (req, res) {
+    res.send({msg: "hello"});
 });
 
-const port = 1343;
-//io.origins(['https://traders-galore.asatirsen.me:443 https://traders-galore.asatirsen.me https://traders-galore.asatirsen.me:* 46.101.140.183:*']);
-io.origins(['localhost:3000']);
-
-
-
 let grannySmith = {
-  name: "Granny Smith",
-  rate: 1.00001,
-  variance: 0.15,
-  startingPoint: 20,
+    name: "Granny Smith",
+    rate: 1.00001,
+    variance: 0.15,
+    startingPoint: 20,
 };
 
 
 
-io.on('connection', function(socket) {
-  console.log('a user connected');
-  socket.on('disconnect', function() {
-    console.log('user disconnected');
-  });
+wsServer.on('request', function (request) {
+    const connection = request.accept(null, request.origin);
+    connection.on('message', function (message) {
+    })
+
+    setInterval(function () {
+        grannySmith["startingPoint"] = stock.getStockPrice(grannySmith);
+        let stocks = {
+            time: new Date().toLocaleTimeString(),
+            value: grannySmith["startingPoint"]
+        }
+        console.log(grannySmith["startingPoint"])
+        connection.send(JSON.stringify(stocks));
+        console.log(grannySmith)
+    }, 30000);
+
+    console.log("user connected");
+    // user disconnected
+    connection.on('close', function () {
+        console.log("user disconnected");
+    });
 });
-
-setInterval(function () {
-  grannySmith["startingPoint"] = stock.getStockPrice(grannySmith);
-  console.log( grannySmith["startingPoint"])
-  io.emit("stocks", {
-    time: new Date().toLocaleTimeString(),
-    value: grannySmith["startingPoint"]
-  });
-  console.log(grannySmith)
-}, 30000);
-
 
 
 // Startup server
 server.listen(port, () => {
-  console.log(`Server is listening on ${port}`);
+    console.log(`Server is listening on ${port}`);
 });
 
 module.exports = server;
