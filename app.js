@@ -18,7 +18,7 @@ app.use(function (req, res) {
 let grannySmith = {
     name: "Granny Smith",
     rate: 1.00001,
-    variance: 0.85,
+    variance: 0.05,
     startingPoint: 10,
 };
 
