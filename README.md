@@ -13,9 +13,13 @@ Open [http://localhost:1343](http://localhost:1343) to view it in the browser.
 To install dependencies:
 
 npm install express --save
-npm install socket.io
+npm install websocket
 
 ### `Technical choices`
-Node.js Express was used as a server to integrate with socket.io.
-Socket.io was chosen as websocket as it is a wrapper for websocket and provides opportunities to use more features if the functionality were to be further developed, such as broadcasting to multiple sockets, storing data associated with each client, and asynchronous I/O.
-
+Node.js Express was used as a server to integrate with websocket.
+One version of teh websocket was built with cosket.io and another with websocket. As this project only required a very simple websocket, the latter was
+chosen in order to avoid problems with the nginx server. WebSocket's advantages are that it is a Web standard, it is very 
+lightweight because it is natively supported by some browsers. 
+Socket.IO supports more browsers and has more functionality, but also comes with some overhead. 
+There were issues in implementing the socket.io server with nginx at this
+stage, so until that is resolved the websocket version works fine.

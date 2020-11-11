@@ -18,8 +18,8 @@ app.use(function (req, res) {
 let grannySmith = {
     name: "Granny Smith",
     rate: 1.00001,
-    variance: 0.15,
-    startingPoint: 20,
+    variance: 0.85,
+    startingPoint: 10,
 };
 
 
@@ -38,7 +38,7 @@ wsServer.on('request', function (request) {
         console.log(grannySmith["startingPoint"])
         connection.send(JSON.stringify(stocks));
         console.log(grannySmith)
-    }, 30000);
+    }, 50000);
 
     console.log("user connected");
     // user disconnected
